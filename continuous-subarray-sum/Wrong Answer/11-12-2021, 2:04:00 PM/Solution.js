@@ -1,0 +1,69 @@
+// https://leetcode.com/problems/continuous-subarray-sum
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+// var checkSubarraySum = function(nums, k) {
+//     if ((nums.reduce((a, b) => a + b, 0) % k) === 0) return true
+    
+//     let windowStart = 0, multipleSum, windowSum = 0
+    
+//     for (let num in nums) {
+//         //accumulate sum
+//         windowSum += nums[num]
+        
+//         if (num >= 1) {
+//             multipleSum = windowSum
+            
+//             if ((multipleSum % k) === 0) return true
+            
+//             windowSum -= nums[windowStart]
+//             windowStart++
+//         }
+//     }
+//     return false
+// };
+
+
+// var checkSubarraySum = function (nums, k) {
+
+// 	let sum = 0
+	
+// 	let prefix = 0;
+	
+// 	const hash = new Set();
+	
+// 	for (let i = 0; i < nums.length; i++) {
+// 		sum += nums[i]
+
+// 		if (k != 0) sum = sum % k
+
+// 		if(hash.has(sum)) return true
+
+// 		hash.add(prefix);
+// 		prefix = sum;
+// 	}
+// 	return false
+// };
+
+
+var checkSubarraySum = function (nums, k) {
+    let sum = 0, zeroes = 0
+    
+    for (let num in nums) {
+        sum += nums[num]
+        
+        if (nums[num] === 0) zeroes++
+        
+        if (num >= 1) {
+            if ((sum % k === 0)) return true
+        }
+        
+        if (zeroes >= 2) return true
+        
+    }
+    return false
+    
+};

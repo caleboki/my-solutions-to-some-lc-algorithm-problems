@@ -1,0 +1,21 @@
+// https://leetcode.com/problems/house-robber
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+
+//https://leetcode.com/problems/house-robber/discuss/1299367/DP-Explanation
+var rob = function(nums) {
+    //this problem should satisfy this dynamic programming relationship
+    //rob = max(nums[0] + rob(nums[2:n]), rob(nums[1:n]))
+    
+    let rob1 = 0, rob2 = 0
+    
+    for (let i = 0; i < nums.length; i++) {
+        let temp = Math.max(nums[i] + rob1, rob2)
+        rob1 = rob2
+        rob2 = temp
+    }
+    return rob2
+};
